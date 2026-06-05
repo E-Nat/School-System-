@@ -11,12 +11,12 @@ jobs:
     steps:
           name: check code
           uses: actions/checkout@v2
-       -  name: Set up JDK 17
+          name: Set up JDK 17
           uses: actions/setup-java@v2
           with:
             java-version: '17'
 
-         - name: Build Application
+          name: Build Application
             run: |
               mvn clean install
              mvn -B package --flile pom.xml 
