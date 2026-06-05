@@ -9,5 +9,8 @@
     <h1>hello world</h1>
     <h1>Welcome to my website</h1>
     <p>This is a simple HTML page.</p>
+    <footer>
+        <p>&copy; 2023 My Website. All rights reserved.</p>
+    </footer>
 </body>
 </html>
