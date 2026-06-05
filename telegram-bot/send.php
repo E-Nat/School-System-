@@ -5,22 +5,35 @@ require "config.php";
 function sendMessage($chat_id, $message) {
     $url = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendMessage";
 
-    $data = [
+    $payload = json_encode([
         "chat_id" => $chat_id,
         "text" => $message,
-        "parse_mode" => "HTML"
-    ];
+        "parse_mode" => "HTML",
+        "disable_web_page_preview" => true
+    ]);
 
-    $options = [
-        "http" => [
-            "header"  => "Content-Type: application/x-www-form-urlencoded\r\n",
-            "method"  => "POST",
-            "content" => http_build_query($data),
-            "ignore_errors" => true,
-        ]
-    ];
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 
-    $context = stream_context_create($options);
-    return file_get_contents($url, false, $context);
+    $result = curl_exec($ch);
+    $curlError = curl_error($ch);
+    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    $log = sprintf(
+        "%s sendMessage(chat_id=%s status=%s error=%s payload=%s result=%s\n",
+        date('c'),
+        json_encode($chat_id),
+        $status,
+        json_encode($curlError),
+        json_encode($payload),
+        json_encode($result)
+    );
+    file_put_contents(__DIR__ . '/telegram-debug.log', $log, FILE_APPEND | LOCK_EX);
+
+    return $result;
 }
 ?>

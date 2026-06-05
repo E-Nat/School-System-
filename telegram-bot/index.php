@@ -3,6 +3,9 @@
 require "send.php";
 
 $raw = file_get_contents('php://input');
+$logEntry = sprintf("%s raw=%s\n", date('c'), json_encode($raw));
+file_put_contents(__DIR__ . '/telegram-debug.log', $logEntry, FILE_APPEND | LOCK_EX);
+
 $update = json_decode($raw, true);
 
 if (empty($update)) {
@@ -11,8 +14,9 @@ if (empty($update)) {
     exit;
 }
 
-$chat_id = $update['message']['chat']['id'] ?? null;
-$text = trim($update['message']['text'] ?? '');
+$message = $update['message'] ?? $update['edited_message'] ?? $update['callback_query']['message'] ?? null;
+$chat_id = $message['chat']['id'] ?? null;
+$text = trim($message['text'] ?? $update['callback_query']['data'] ?? '');
 
 if (!$chat_id || $text === '') {
     exit;
