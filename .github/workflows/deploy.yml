@@ -2,7 +2,8 @@ name: PHP CI/CD Telegram Bot
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "master"]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -19,8 +20,7 @@ jobs:
 
       - name: PHP Syntax Check
         run: |
-          php -l index.php
-          php -l send.php
+          find . -name '*.php' -print0 | xargs -0 -n1 php -l
 
       - name: Send Telegram Success Message
         run: |
