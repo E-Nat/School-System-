@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php 
 include "DB_connection.php";
 include "data/setting.php";
@@ -117,4 +117,4 @@ if ($setting != 0) {
 }  ?>
 =======
 <?php echo "Hello, World!"; ?>
->>>>>>> 145ade26eb1dc090e06cc8f9c89a09823604bb24
+
