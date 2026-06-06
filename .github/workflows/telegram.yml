@@ -1,133 +1,53 @@
-name: PHP CI/CD Pipeline
+name: Telegram Notification
 
 on:
   push:
     branches:
       - main
-      - develop
-  pull_request:
-    branches:
-      - main
-
-env:
-  PHP_VERSION: "8.2"
 
 jobs:
-  build-test-deploy:
+  notify:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Source
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ env.PHP_VERSION }}
-          extensions: mbstring, intl, pdo_mysql
-          coverage: none
-
-      - name: Validate Composer
-        run: |
-          if [ -f composer.json ]; then
-            composer validate --strict
-          fi
-
-      - name: Install Dependencies
-        run: |
-          if [ -f composer.json ]; then
-            composer install --prefer-dist --no-progress
-          fi
-
+      # Check PHP Syntax
       - name: Check PHP Syntax
         run: |
-          find . -type f -name "*.php" -exec php -l {} \;
+          find . -name "*.php" -exec php -l {} \;
 
-      - name: PHP Code Style Check
-        run: |
-          if [ -f vendor/bin/phpcs ]; then
-            vendor/bin/phpcs .
-          fi
-
-      - name: Run PHPUnit Tests
-        run: |
-          if [ -f vendor/bin/phpunit ]; then
-            vendor/bin/phpunit
-          fi
-
-      # Example Deployment
-      # Uncomment if needed
-      #
-      # - name: Deploy to Server
-      #   run: |
-      #     echo "Deploying application..."
-      #
-      #     ssh user@server "
-      #       cd /var/www/project &&
-      #       git pull origin main &&
-      #       composer install --no-dev &&
-      #       php artisan migrate --force
-      #     "
-
-      - name: Telegram Success Notification
+      # Success Notification
+      - name: Success Notification
         if: success()
         run: |
-          MESSAGE="✅ CI/CD SUCCESS
+          MESSAGE="🐱 Git Push Success
 
-          🚀 Workflow: ${{ github.workflow }}
           👤 User: ${{ github.actor }}
-          📦 Repository: ${{ github.repository }}
           🌿 Branch: ${{ github.ref_name }}
+          📝 Commit: ${{ github.event.head_commit.message }}
+          📦 Repository: ${{ github.repository }}
+              Gmail: ${{ secrets.EMAIL }}
 
-          📝 Commit:
-          ${{ github.event.head_commit.message }}
+          ✅ Build Passed"
 
-          🔗 Commit:
-          https://github.com/${{ github.repository }}/commit/${{ github.sha }}
-
-          🔗 Actions:
-          https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-          🕒 Time: $(date -u)"
-
-          curl -s -X POST \
-            "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+          curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             --data-urlencode "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
-            --data-urlencode "parse_mode=HTML" \
             --data-urlencode "text=$MESSAGE"
 
-      - name: Telegram Failed Notification
+      # Failed Notification
+      - name: Failed Notification
         if: failure()
         run: |
-          MESSAGE="❌ CI/CD FAILED
+          MESSAGE="❌ Build Failed
 
-          🚀 Workflow: ${{ github.workflow }}
           👤 User: ${{ github.actor }}
-          📦 Repository: ${{ github.repository }}
           🌿 Branch: ${{ github.ref_name }}
+          📝 Commit: ${{ github.event.head_commit.message }}
+          📦 Repository: ${{ github.repository }}
 
-          📝 Commit:
-          ${{ github.event.head_commit.message }}
+          ⚠️ Please check GitHub Actions logs"
 
-          🔗 Commit:
-          https://github.com/${{ github.repository }}/commit/${{ github.sha }}
-
-          🔗 Logs:
-          https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-          ⚠️ Please check workflow logs."
-
-          curl -s -X POST \
-            "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+          curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             --data-urlencode "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
-            --data-urlencode "parse_mode=HTML" \
             --data-urlencode "text=$MESSAGE"
-
-      - name: Workflow Summary
-        if: always()
-        run: |
-          echo "## CI/CD Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- Repository: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Branch: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Triggered By: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
