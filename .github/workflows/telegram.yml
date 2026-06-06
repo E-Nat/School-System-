@@ -27,7 +27,7 @@ jobs:
           🌿 Branch: ${{ github.ref_name }}
           📝 Commit: ${{ github.event.head_commit.message }}
           📦 Repository: ${{ github.repository }}
-              Gmail: ${{ secrets.EMAIL }}
+              <<==== ហត់ម្ល៉េះ Everthing is AI====>>
 
           ✅ Build Passed"
 
