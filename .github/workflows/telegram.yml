@@ -10,7 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
+
+      # Check PHP Syntax
+      - name: Check PHP Syntax
+        run: |
+          find . -name "*.php" -exec php -l {} \;
+
+      # Success Notification
       - name: Success Notification
+        if: success()
         run: |
           MESSAGE="🐱 Git Push Success
 
@@ -19,8 +28,25 @@ jobs:
           📝 Commit: ${{ github.event.head_commit.message }}
           📦 Repository: ${{ github.repository }}
 
-          ✅ Code Updated Successfully"
+          ✅ Build Passed"
 
           curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
-          -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
-          --data-urlencode text="$MESSAGE"
+            --data-urlencode "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
+            --data-urlencode "text=$MESSAGE"
+
+      # Failed Notification
+      - name: Failed Notification
+        if: failure()
+        run: |
+          MESSAGE="❌ Build Failed
+
+          👤 User: ${{ github.actor }}
+          🌿 Branch: ${{ github.ref_name }}
+          📝 Commit: ${{ github.event.head_commit.message }}
+          📦 Repository: ${{ github.repository }}
+
+          ⚠️ Please check GitHub Actions logs"
+
+          curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            --data-urlencode "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
+            --data-urlencode "text=$MESSAGE"
