@@ -28,6 +28,7 @@ jobs:
           📝 Commit: ${{ github.event.head_commit.message }}
           📦 Repository: ${{ github.repository }}
           📝 Title: yamete kudasai
+          image: https://c.tenor.com/9Xl8n2ZsHjIAAAAC/cat-typing.gif
 
           ✅ Build Passed"
 
@@ -45,7 +46,7 @@ jobs:
           🌿 Branch: ${{ github.ref_name }}
           📝 Commit: ${{ github.event.head_commit.message }}
           📦 Repository: ${{ github.repository }}
-
+        
           ⚠️ Please check GitHub Actions logs"
 
           curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
