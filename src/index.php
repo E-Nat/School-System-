@@ -250,6 +250,132 @@
         </div>
     </div>
     
+    <div class="container mb-5">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h5 class="card-title">Analytics & Reports</h5>
+                        <p class="card-text">Generate comprehensive reports and analytics to track performance and insights.</p>
+                        <a href="#reports" class="btn btn-primary">View Reports</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h5 class="card-title">Attendance Tracking</h5>
+                        <p class="card-text">Monitor and manage student and staff attendance records with ease.</p>
+                        <a href="#attendance" class="btn btn-primary">Track Attendance</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h5 class="card-title">System Settings</h5>
+                        <p class="card-text">Configure system preferences, user roles, and security settings.</p>
+                        <a href="#settings" class="btn btn-primary">Manage Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">System Statistics</h2>
+            <div class="row text-center">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="text-primary fw-bold">1,250</h3>
+                            <p class="card-text text-muted">Active Students</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="text-primary fw-bold">85</h3>
+                            <p class="card-text text-muted">Faculty Members</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="text-primary fw-bold">42</h3>
+                            <p class="card-text text-muted">Available Courses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="text-primary fw-bold">98%</h3>
+                            <p class="card-text text-muted">System Uptime</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="fw-bold mb-3">Why Choose Our System?</h2>
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <span class="badge bg-primary me-2"><i class="fas fa-check"></i></span>
+                        <strong>Easy to Use:</strong> Intuitive interface designed for all users
+                    </li>
+                    <li class="mb-3">
+                        <span class="badge bg-primary me-2"><i class="fas fa-check"></i></span>
+                        <strong>Secure:</strong> Enterprise-level security for data protection
+                    </li>
+                    <li class="mb-3">
+                        <span class="badge bg-primary me-2"><i class="fas fa-check"></i></span>
+                        <strong>Scalable:</strong> Grows with your institution
+                    </li>
+                    <li class="mb-3">
+                        <span class="badge bg-primary me-2"><i class="fas fa-check"></i></span>
+                        <strong>24/7 Support:</strong> Dedicated support team always available
+                    </li>
+                    <li class="mb-3">
+                        <span class="badge bg-primary me-2"><i class="fas fa-check"></i></span>
+                        <strong>Real-time Updates:</strong> Live data synchronization
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold mb-3">Quick Start Guide</h5>
+                        <ol class="list-group list-group-numbered">
+                            <li class="list-group-item border-0">Create admin account</li>
+                            <li class="list-group-item border-0">Configure school information</li>
+                            <li class="list-group-item border-0">Add teachers and staff</li>
+                            <li class="list-group-item border-0">Register students</li>
+                            <li class="list-group-item border-0">Create courses and schedules</li>
+                            <li class="list-group-item border-0">Start managing!</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <footer>
         <div class="container text-center">
             <p>&copy; 2024 School Management System. All rights reserved.</p>
