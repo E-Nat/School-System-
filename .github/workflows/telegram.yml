@@ -27,8 +27,8 @@ jobs:
           🌿 Branch: ${{ github.ref_name }}
           📝 Commit: ${{ github.event.head_commit.message }}
           📦 Repository: ${{ github.repository }}
-              
-             Title: yamete kudasai
+          📝 Title: yamete kudasai
+
           ✅ Build Passed"
 
           curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
