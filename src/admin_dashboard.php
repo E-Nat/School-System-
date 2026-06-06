@@ -44,6 +44,7 @@ include 'inc/header.php';
         </div>
         <nav class="space-y-2">
             <a href="admin_dashboard.php" class="flex items-center gap-3 rounded-3xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/15">Overview</a>
+            <a href="users.php" class="flex items-center gap-3 rounded-3xl px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10">Users</a>
             <a href="students.php" class="flex items-center gap-3 rounded-3xl px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10">Students</a>
             <a href="teachers.php" class="flex items-center gap-3 rounded-3xl px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10">Teachers</a>
             <a href="courses.php" class="flex items-center gap-3 rounded-3xl px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10">Courses</a>
@@ -151,6 +152,7 @@ include 'inc/header.php';
                 <div class="rounded-[2rem] bg-white p-8 shadow-lg ring-1 ring-slate-200">
                     <h2 class="text-xl font-semibold text-slate-900">Top actions</h2>
                     <div class="mt-6 space-y-3">
+                        <a href="users.php" class="flex items-center justify-between rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-100">Manage Users <span class="text-slate-400">→</span></a>
                         <a href="students.php" class="flex items-center justify-between rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-100">Manage Students <span class="text-slate-400">→</span></a>
                         <a href="teachers.php" class="flex items-center justify-between rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-100">Manage Teachers <span class="text-slate-400">→</span></a>
                         <a href="courses.php" class="flex items-center justify-between rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-100">Manage Courses <span class="text-slate-400">→</span></a>

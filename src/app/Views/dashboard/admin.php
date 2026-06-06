@@ -55,6 +55,7 @@
         <h2 class="text-xl font-semibold text-slate-900">Action center</h2>
         <p class="mt-2 text-sm text-slate-500">Quick access to the tools you use daily.</p>
         <div class="mt-6 grid gap-4">
+            <a href="/src/users.php" class="rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-900 transition hover:bg-slate-100">Manage users</a>
             <a href="/src/students.php" class="rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-900 transition hover:bg-slate-100">Manage students</a>
             <a href="/src/enrollments.php" class="rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-900 transition hover:bg-slate-100">Review enrollments</a>
             <a href="/src/finance.php" class="rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-900 transition hover:bg-slate-100">View finance</a>
