@@ -19,8 +19,6 @@
     <footer>
         <p>&copy; 2023 My Website. All rights reserved.</p>
     </footer>
-    <?php
-        echo "This is a PHP code block.
-    ?>
+    
 </body>
 </html>
